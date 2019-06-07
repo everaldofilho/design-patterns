@@ -6,14 +6,14 @@ use \PDO;
 class Conection
 {
     /** @var PDO */
-    private $connection = null;
+    private static $connection = null;
 
     public static function getConnection() : PDO
     {
-        if ($this->connection == null) {
-            $this->connection = new PDO('"mysql:host=localhost;dbname=mysql", "root",');
+        if (self::$connection == null) {
+            self::$connection = new PDO('"mysql:host=localhost;dbname=mysql", "root",');
         }
-        
-        return $this->connection;
+
+        return self::$connection;
     }
 }
