@@ -6,6 +6,7 @@ Criado este projeto somente para colocar em pratica.
 ### Padrão de Criação
 - Singleton
 - Factory Method
+- Prototype
 
 
 ### Livro
