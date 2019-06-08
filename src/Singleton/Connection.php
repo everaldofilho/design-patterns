@@ -3,7 +3,7 @@
 namespace App\Singleton;
 use \PDO;
 
-class Conection
+class Connection
 {
     /** @var PDO */
     private static $connection = null;
