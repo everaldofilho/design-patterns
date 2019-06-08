@@ -8,6 +8,7 @@ use App\Builder\FileReadConfiguration;
 use App\Builder\FileRead;
 use App\Builder\FileReadEmpresa1;
 use App\Builder\FileReadEmpresa2;
+use App\Builder\Column;
 
 class FileReadTest extends TestCase
 {
@@ -18,9 +19,9 @@ class FileReadTest extends TestCase
         $fileRead->setTypeSeparator(';');
         $fileRead->setHasHeader(false);
         $fileRead
-            ->addColumn('email')
-            ->addColumn('nome')
-            ->addColumn('telefone');
+            ->addColumn(Column::EMAIL)
+            ->addColumn(Column::NOME)
+            ->addColumn(Column::TELEFONE);
 
         $columns = $fileRead->getColumns();
 
@@ -37,9 +38,9 @@ class FileReadTest extends TestCase
         $readConf->setTypeSeparator(';');
         $readConf->setHasHeader(false);
         $readConf
-            ->addColumn('email')
-            ->addColumn('nome')
-            ->addColumn('telefone');
+            ->addColumn(Column::NOME)
+            ->addColumn(Column::EMAIL)
+            ->addColumn(Column::TELEFONE);
 
         $fileRead = new FileRead($readConf);
         $fileRead->setFile(__DIR__ . 'file.csv');
