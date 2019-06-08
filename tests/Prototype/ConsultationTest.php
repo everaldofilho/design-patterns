@@ -3,15 +3,16 @@
 namespace Tests\Prototype;
 
 use PHPUnit\Framework\TestCase;
+
 use App\Prototype\Consultation;
 
 class ConsultationTest extends TestCase
 {
-    public function testConsulta()
+    public function testConsultation()
     {
         $patients = ['Maria', 'João', 'Gustavo', 'Fernando'];
 
-        $consultationPrototype = new Consultation();
+        $consultationPrototype = new Consultation;
         $consultationPrototype->setNameUser("User Name");
         $consultationPrototype->setNameDoctor("Doctor Cristiano");
 
