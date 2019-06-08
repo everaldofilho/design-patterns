@@ -28,15 +28,15 @@ class ConsultationTest extends TestCase
         // First Consultation
         $consultation = $consultations[0];
 
-        $this->assertEquals($consultation->getNameUser(), "User Name");
-        $this->assertEquals($consultation->getNameDoctor(), "Doctor Cristiano");
-        $this->assertEquals($consultation->getNamePatient(), "Maria");
+        $this->assertEquals("User Name", $consultation->getNameUser());
+        $this->assertEquals("Doctor Cristiano", $consultation->getNameDoctor());
+        $this->assertEquals("Maria", $consultation->getNamePatient());
 
         // End Consultation
         $consultation = end($consultations);
 
-        $this->assertEquals($consultation->getNameUser(), "User Name");
-        $this->assertEquals($consultation->getNameDoctor(), "Doctor Cristiano");
-        $this->assertEquals($consultation->getNamePatient(), "Fernando");
+        $this->assertEquals("User Name", $consultation->getNameUser());
+        $this->assertEquals("Doctor Cristiano", $consultation->getNameDoctor());
+        $this->assertEquals("Fernando", $consultation->getNamePatient());
     }
 }
