@@ -3,6 +3,7 @@
 namespace Tests\Prototype;
 
 use PHPUnit\Framework\TestCase;
+use App\Prototype\Consultation;
 
 class ConsultationTest extends TestCase
 {
