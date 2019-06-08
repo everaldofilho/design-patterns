@@ -23,7 +23,7 @@ class SearchTest extends TestCase
 
         $result = $search->search("Fulando de tal");
 
-        $this->assertEquals('Pesquisando pelo Nome "fulano de tal"', $result);
+        $this->assertEquals('Pesquisando pelo Nome "Fulando de tal"', $result);
     }
 
     public function testSearchForIp()

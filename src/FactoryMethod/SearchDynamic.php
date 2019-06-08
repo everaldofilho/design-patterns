@@ -6,6 +6,12 @@ class SearchDynamic
 {
     private $type;
 
+    private $types = [
+        'email' => Types\SearchEmail::class,
+        'ip' => Types\SearchIp::class,
+        'name' => Types\SearchName::class,
+    ];
+
     public function search($search) : String
     {
         return $this->type->search($search);
@@ -22,15 +28,15 @@ class SearchDynamic
 
     public function setType($type)
     {
-        $className = sprintf("Search%s", ucfirst($type));
-        $this->type = new $className;
+        $class = $this->types[$type];
+        $this->type = new $class;
     }
 
     private function getTypeSearch($search) : String
     {
         if (filter_var($search, FILTER_VALIDATE_EMAIL)) {
             return "email";
-        } else if (filter_var($search, FILTER_VALIDATE_IP)){
+        } else if (filter_var($search, FILTER_VALIDATE_IP)) {
             return "ip";
         }
         return 'name';
