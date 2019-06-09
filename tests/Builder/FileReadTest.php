@@ -4,20 +4,19 @@ namespace Tests\Builder;
 
 use PHPUnit\Framework\TestCase;
 
-use App\Builder\FileReadConfiguration;
-use App\Builder\FileRead;
-use App\Builder\FileReadEmpresa1;
-use App\Builder\FileReadEmpresa2;
-use App\Builder\Column;
+use \App\Builder\File\Config;
+use \App\Builder\File\Read;
+use \App\Builder\File\Column;
+use \App\Builder\FileReadEmpresa1;
+use \App\Builder\FileReadEmpresa2;
 
 class FileReadTest extends TestCase
 {
-
     public function testFileReadConfiguracao()
     {
-        $fileRead = new FileReadConfiguration();
+        $fileRead = new Config;
         $fileRead->setTypeSeparator(';');
-        $fileRead->setHasHeader(false);
+        $fileRead->setHasHeader(0);
         $fileRead
             ->addColumn(Column::EMAIL)
             ->addColumn(Column::NOME)
@@ -26,7 +25,7 @@ class FileReadTest extends TestCase
         $columns = $fileRead->getColumns();
 
         $this->assertEquals(";", $fileRead->getTypeSeparator());
-        $this->assertEquals(false, $fileRead->getHasHeader());
+        $this->assertEquals(0, $fileRead->getHasHeader());
         $this->assertEquals("email", $columns[0]);
         $this->assertEquals("nome", $columns[1]);
         $this->assertEquals("telefone", $columns[2]);
@@ -34,16 +33,16 @@ class FileReadTest extends TestCase
 
     public function testFileRead()
     {
-        $readConf = new FileReadConfiguration();
-        $readConf->setTypeSeparator(';');
-        $readConf->setHasHeader(false);
-        $readConf
+        $config = new Config();
+        $config->setTypeSeparator(';');
+        $config->setHasHeader(1);
+        $config
             ->addColumn(Column::NOME)
             ->addColumn(Column::EMAIL)
             ->addColumn(Column::TELEFONE);
 
-        $fileRead = new FileRead($readConf);
-        $fileRead->setFile(__DIR__ . 'file.csv');
+        $fileRead = new Read($config);
+        $fileRead->setFile(__DIR__ . '/arquivo/file.csv');
         $fileRead->run();
 
         $data = $fileRead->getData();
@@ -59,7 +58,7 @@ class FileReadTest extends TestCase
         // Bussiness one context head with tree columns (nome, email, telefone)
 
         $fileRead = new FileReadEmpresa1;
-        $fileRead->setFile(__DIR__ . "arquivo/empresa1.csv");
+        $fileRead->setFile(__DIR__ . "/arquivo/empresa1.csv");
 
         $data = $fileRead->run()->getData();
         $firstLine = $data[0];
@@ -72,7 +71,7 @@ class FileReadTest extends TestCase
     public function testReadFile2()
     {
         $fileRead = new FileReadEmpresa2;
-        $fileRead->setFile(__DIR__ . "arquivo/empresa2.csv");
+        $fileRead->setFile(__DIR__ . "/arquivo/empresa2.csv");
 
         $data = $fileRead->run()->getData();
         $firstLine = $data[0];
