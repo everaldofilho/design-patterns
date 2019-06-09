@@ -7,6 +7,7 @@ Criado este projeto somente para colocar em pratica.
 - Singleton
 - Factory Method
 - Prototype
+- Builder
 
 
 ### Livro
