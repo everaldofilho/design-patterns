@@ -25,13 +25,6 @@ class RegisterTest extends TestCase
         $this->assertInternalType('array', $result);
         $this->assertEquals(2, count($result));
         $this->assertEquals("Mail send", $result[0]);
-        $this->assertEquals("Sms send", $result[0]);
-
-
-
-        
-        $this->assertEquals("Fulano", $register->getName());
-        $this->assertEquals("email@email.com", $register->getEmail());
-        $this->assertEquals("(99) 9 9999-999", $register->getPhone());
+        $this->assertEquals("Sms send", $result[1]);
     }
 }
