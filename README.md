@@ -9,6 +9,10 @@ Criado este projeto somente para colocar em pratica.
 - Prototype
 - Builder
 
+### Padrões estruturais
+- Adapter
+- Facade
+- Decorator
 
 ### Livro
 - Design Patterns com PHP 7
