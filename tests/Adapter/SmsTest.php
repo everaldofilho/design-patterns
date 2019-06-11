@@ -3,6 +3,7 @@
 namespace Tests\Adapter;
 
 use PHPUnit\Framework\TestCase;
+use App\Adapter\Sms;
 
 class SmsTest extends TestCase
 {
