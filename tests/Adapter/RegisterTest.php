@@ -5,10 +5,12 @@ namespace Tests\Adapter;
 use PHPUnit\Framework\TestCase;
 use App\Adapter\Register;
 use App\Adapter\Person;
+use App\Adapter\MailAdapter;
+use App\Adapter\SmsAdapter;
 
 class RegisterTest extends TestCase
 {
-    public function testRegister()
+    public function testAdapter()
     {
         $person = new Person;
         $person->setName("Fulano");
