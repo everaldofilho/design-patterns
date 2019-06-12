@@ -9,7 +9,7 @@ class FileReadEmpresa2 extends ReadFile
 {
     protected function buildConfig()
     {
-        $this->config->setEndLine("\r\n");
+        $this->config->setEndLine("\n");
         $this->config->setTypeSeparator("\t");
         $this->config->setHasHeader(1);
         $this->config
