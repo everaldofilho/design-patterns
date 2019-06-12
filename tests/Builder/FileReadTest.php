@@ -34,6 +34,7 @@ class FileReadTest extends TestCase
     public function testFileRead()
     {
         $config = new Config();
+        $config->setEndLine("\n");
         $config->setTypeSeparator(';');
         $config->setHasHeader(1);
         $config
