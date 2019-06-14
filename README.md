@@ -4,9 +4,20 @@ Criado este projeto somente para colocar em pratica.
 ## Padrões de Projeto
 
 ### Padrão de Criação
-- Singleton
+- Singleton 
+
+    Tem como objetivo o controlar a instancias da classe, para exemplificar foi usado o problema de uma classe de conexão, a ideia é que só tenha uma instancia durante a execução do codigo mesmo que seja chamada mais de uma vez.
+
+    [Exemplo](src/Singleton/Connection.php) e [Test](tests/Singleton/ConnectionTest.php)
+        
 - Factory Method
+
+    [Exemplo](src/FactoryMethod/SearchDynamic.php) e [Test](tests/FactoryMethod/SearchDynamicTest.php)
+
 - Prototype
+
+    [Exemplo](src/Prototype/Consultation.php) e [Test](tests/Prototype/ConsultationTest.php)
+    
 - Builder
 
 ### Padrões estruturais
