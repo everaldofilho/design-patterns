@@ -5,7 +5,7 @@ namespace Tests\Decorator;
 use PHPUnit\Framework\TestCase;
 use App\Decorator\User;
 use App\Decorator\UserEncriptNormal;
-use App\Decorator\UserEncriptArgon2;
+use App\Decorator\UserEncriptBcript;
 
 class UserTest extends TestCase
 {
@@ -16,7 +16,7 @@ class UserTest extends TestCase
         $user->setPassword("password");
 
         $this->assertEquals("username", $user->getLogin());
-        $this->assertEquals("password", $user->getLogin());
+        $this->assertEquals("password", $user->getPassword());
     }
 
     public function testCreateUserPasswordHash()
@@ -30,13 +30,13 @@ class UserTest extends TestCase
         $this->assertTrue(password_verify('password', $user->getPassword()));
     }
 
-    public function testCreateUserPassword()
+    public function testCreateUserPasswordBcript()
     {
         $user = new User();
         $user->setLogin("username");
         $user->setPassword("password");
 
-        $user = new UserEncriptArgon2($user);
+        $user = new UserEncriptBcript($user);
 
         $this->assertTrue(password_verify('password', $user->getPassword()));
     }
