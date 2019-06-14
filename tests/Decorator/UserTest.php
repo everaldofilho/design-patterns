@@ -2,7 +2,7 @@
 
 namespace Tests\Decorator;
 
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 use App\Decorator\User;
 use App\Decorator\UserEncriptNormal;
 use App\Decorator\UserEncriptArgon2;

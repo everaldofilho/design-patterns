@@ -1,6 +1,17 @@
 # Design Patterns
 Criado este projeto somente para colocar em pratica.
 
+### Instalação
+
+Instalando pacotes
+``php composer install``
+
+Rodandos os testes
+``vendor/bin/phpunit --testdox``
+
+Gerando relatório de cobertura de código
+``vendor/bin/phpunit --testdox --coverage-html coverage/ ``
+
 ## Padrões de Projeto
 
 ### Padrão de Criação
