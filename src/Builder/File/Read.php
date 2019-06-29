@@ -30,7 +30,6 @@ class Read
             }
             $fileObject->next();
         }
-
     }
 
     public function setFile($file)

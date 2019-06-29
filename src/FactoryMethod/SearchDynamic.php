@@ -36,10 +36,9 @@ class SearchDynamic
     {
         if (filter_var($search, FILTER_VALIDATE_EMAIL)) {
             return "email";
-        } else if (filter_var($search, FILTER_VALIDATE_IP)) {
+        } elseif (filter_var($search, FILTER_VALIDATE_IP)) {
             return "ip";
         }
         return 'name';
     }
-
 }

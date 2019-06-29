@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Adapter;
 
@@ -21,7 +21,7 @@ class Register
     public function run() : Array
     {
         $this->messages = [];
-        foreach($this->process as $process){
+        foreach ($this->process as $process) {
             $result = $process->run($this->person);
             if ($result) {
                 $this->messages[] = $process->getMessage();
