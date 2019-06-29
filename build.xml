@@ -56,17 +56,24 @@
         </phpdepend>
     </target>
 
+    <target name="phpmd" unless="phpmd.done" description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
+        <exec executable="./vendor/bin/phpmd" taskname="phpmd">
+            <arg path="${basedir}/src" />
+            <arg value="text" />
+            <arg path="${basedir}/build/phpmd.xml" />
+        </exec>
+        <property name="phpmd.done" value="true"/>
+    </target>
+    <!--
     <target name="phpmd" description="Detecção de bagunça de código">
-        <phpmd rulesets="./phpmd.xml">
+        <phpmd rulesets="phpmd.xml">
             <fileset dir="${application.library}">
                 <include name="**/*.php" />
             </fileset>
             <formatter type="xml" outfile="${application.builddir}/logs/pmd.xml"/>
         </phpmd>
     </target>
-
-
-
+    -->
     <target name="phpcpd" description="Testa duplicação de código">
         <phpcpd>
             <fileset dir="${application.library}">
@@ -75,6 +82,7 @@
             <formatter type="pmd" outfile="${application.builddir}/logs/pmd-cpd.xml"/>
         </phpcpd>
     </target>
+
     <!--
     <target name="phpcs" description="Testa o padrão de codificação">
        <phpcodesniffer standard="PSR2" showSniffs="true" showWarnings="true">
@@ -111,8 +119,8 @@
     </target>
     -->
     <target name="phpunit" description="Testes Unitários">
-        <exec executable="./vendor/bin/phpunit" >
-           <!--< failonerror="true">-->
+        <exec executable="phpunit">
+            <!--< failonerror="true">-->
         </exec>
     </target>
 
