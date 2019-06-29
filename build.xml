@@ -7,7 +7,7 @@
     <property name="application.tests" value="${project.basedir}/tests"/>
     <property name="application.builddir" value="${project.basedir}/build"/>
     <autoloader autoloaderpath="./vendor/autoload.php"/>
-    <target name="build" depends="prepare,lint,phploc,pdepend,phpmd,phpcpd,phpunit,phpcb"/>
+    <target name="build" depends="prepare,lint,phploc,pdepend,phpcs,phpmd,phpcpd,phpunit,phpcb"/>
 
     <target name="clean" description="Limpa os diretórios de artefatos">
         <delete dir="${application.builddir}/api"/>
@@ -64,16 +64,7 @@
         </exec>
         <property name="phpmd.done" value="true"/>
     </target>
-    <!--
-    <target name="phpmd" description="Detecção de bagunça de código">
-        <phpmd rulesets="phpmd.xml">
-            <fileset dir="${application.library}">
-                <include name="**/*.php" />
-            </fileset>
-            <formatter type="xml" outfile="${application.builddir}/logs/pmd.xml"/>
-        </phpmd>
-    </target>
-    -->
+    
     <target name="phpcpd" description="Testa duplicação de código">
         <phpcpd>
             <fileset dir="${application.library}">
@@ -83,45 +74,25 @@
         </phpcpd>
     </target>
 
-    <!--
-    <target name="phpcs" description="Testa o padrão de codificação">
-       <phpcodesniffer standard="PSR2" showSniffs="true" showWarnings="true">
-            <fileset dir="${application.library}">
-                <include name="**/*.php"/>
-            </fileset>
-            <formatter type="default" usefile="false"/>
-            <formatter type="checkstyle" outfile="${application.builddir}/logs/checkstyle.xml"/>
-        </phpcodesniffer>
-   </target>
-    
-    <target name="phpdoc" description="Documentação de API">
-        <phpdoc title="Leviathan API Documentation" destdir="build/api" sourcecode="false" output="HTML:Smarty:PHP">
-            <fileset dir="${application.library}">
-                <include name="**/*.php" />
-            </fileset>
-        </phpdoc>
+    <target name="phpcs" unless="phpcs.done" description="Testa o padrão de codificação">
+        <exec executable="phpcs" taskname="phpcs">
+            <arg value="--standard=PSR2" />
+            <arg value="--extensions=php" />
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=${application.builddir}/logs/checkstyle.xml" />
+            <arg value="--ignore=autoload.php" />
+            <arg path="${application.library}" />
+            <arg path="${application.tests}" />
+        </exec>
+        <property name="phpcs.done" value="true"/>
     </target>
 
-    <target name="phpunit" description="Testes Unitários">
-        <phpunit codecoverage="true" bootstrap="${application.tests}/bootstrap.php">
-            <batchtest>
-                <fileset dir="${application.tests}">
-                    <include name="**/*Test.php"/>
-                </fileset>
-            </batchtest>
-            <formatter type="clover" todir="${application.builddir}/logs" outfile="clover.xml"/>
-            <formatter type="xml" todir="${application.builddir}/logs" outfile="junit.xml"/>
-        </phpunit>
-        <coverage-report outfile="${application.builddir}/coverage/coverage.xml">
-            <report todir="${application.builddir}/coverage"/>
-        </coverage-report>
-        <phpunitreport infile="${application.tests}/phpunit.xml" todir="${application.builddir}/logs"/>
-    </target>
-    -->
-    <target name="phpunit" description="Testes Unitários">
-        <exec executable="phpunit">
-            <!--< failonerror="true">-->
+    <target name="phpunit" unless="phpunit.done" description="Testes Unitários">
+        <exec executable="phpunit" taskname="phpunit">
+            <arg value="--configuration"/>
+            <arg path="./phpunit.xml"/>
         </exec>
+        <property name="phpunit.done" value="true"/>
     </target>
 
     <target name="phpcb" description="Cria a navegação de código">
