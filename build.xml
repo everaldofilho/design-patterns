@@ -57,7 +57,7 @@
     </target>
 
     <target name="phpmd" description="Detecção de bagunça de código">
-        <phpmd rulesets="${application.builddir}/phpmd.xml">
+        <phpmd rulesets="./phpmd.xml">
             <fileset dir="${application.library}">
                 <include name="**/*.php" />
             </fileset>
