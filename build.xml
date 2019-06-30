@@ -57,10 +57,12 @@
     </target>
 
     <target name="phpmd" unless="phpmd.done" description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
-        <exec executable="./vendor/bin/phpmd" taskname="phpmd">
-            <arg path="${basedir}/src" />
-            <arg value="text" />
-            <arg path="${basedir}/build/phpmd.xml" />
+        <exec executable="phpmd" taskname="phpmd">
+            <arg path="${application.library}" />
+            <arg value="xml" />
+            <arg value="codesize,unusedcode,naming" />
+            <arg value="--reportfile" />
+            <arg path="${application.builddir}/logs/phpmd.xml" />
         </exec>
         <property name="phpmd.done" value="true"/>
     </target>
