@@ -37,7 +37,7 @@
     </target>
 
     <target name="phploc" description="Mede o tamanho da aplicação">
-        <exec executable="phploc">
+        <exec executable="phploc" logOutput="true">
             <arg value="--log-csv" />
             <arg value="${application.builddir}/logs/phploc.csv" />
             <arg path="${application.library}" />
@@ -57,7 +57,7 @@
     </target>
 
     <target name="phpmd" unless="phpmd.done" description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
-        <exec executable="phpmd" taskname="phpmd">
+        <exec executable="phpmd" taskname="phpmd" logOutput="true">
             <arg path="${application.library}" />
             <arg value="xml" />
             <arg value="codesize,unusedcode,naming" />
@@ -77,7 +77,7 @@
     </target>
 
     <target name="phpcs" unless="phpcs.done" description="Testa o padrão de codificação">
-        <exec executable="phpcs" taskname="phpcs">
+        <exec executable="phpcs" taskname="phpcs" logOutput="true">
             <arg value="--standard=PSR2" />
             <arg value="--extensions=php" />
             <arg value="--report=checkstyle" />
@@ -90,15 +90,16 @@
     </target>
 
     <target name="phpunit" unless="phpunit.done" description="Testes Unitários">
-        <exec executable="phpunit" taskname="phpunit">
+        <exec executable="phpunit" taskname="phpunit" logOutput="true">
             <arg value="--configuration"/>
             <arg path="./phpunit.xml"/>
+            <arg value="--testdox"/>
         </exec>
         <property name="phpunit.done" value="true"/>
     </target>
 
     <target name="phpcb" description="Cria a navegação de código">
-        <exec executable="phpcb">
+        <exec executable="phpcb" logOutput="true">
             <arg value="--log" />
             <arg path="${application.builddir}/logs" />
             <arg value="--source" />
