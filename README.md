@@ -38,3 +38,7 @@ Gerando relatório de cobertura de código
 
 ### Livro
 - Design Patterns com PHP 7
+
+## Ferramentas de QA
+ 
+ [PHPQA](https://github.com/EdgedesignCZ/phpqa) -> https://github.com/EdgedesignCZ/phpqa

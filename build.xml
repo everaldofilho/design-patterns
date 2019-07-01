@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="TheProject" default="build" basedir=".">
+
+    <!-- Altere estas propriedades adequando-as ao seu projeto -->
+    <property name="application.library" value="${project.basedir}/src"/>
+    <property name="application.tests" value="${project.basedir}/tests"/>
+    <property name="application.builddir" value="${project.basedir}/build"/>
+    <autoloader autoloaderpath="./vendor/autoload.php"/>
+    <target name="build" depends="prepare,lint,phploc,pdepend,phpcs,phpmd,phpcpd,phpunit,phpcb"/>
+
+    <target name="clean" description="Limpa os diretórios de artefatos">
+        <delete dir="${application.builddir}/api"/>
+        <delete dir="${application.builddir}/code-browser"/>
+        <delete dir="${application.builddir}/coverage"/>
+        <delete dir="${application.builddir}/logs"/>
+        <delete dir="${application.builddir}/pdepend"/>
+    </target>
+
+    <target name="prepare" depends="clean" description="Cria os diretórios de artefatos">
+        <mkdir dir="${application.builddir}/api"/>
+        <mkdir dir="${application.builddir}/code-browser"/>
+        <mkdir dir="${application.builddir}/coverage"/>
+        <mkdir dir="${application.builddir}/logs"/>
+        <mkdir dir="${application.builddir}/pdepend"/>
+    </target>
+
+    <target name="lint">
+        <phplint>
+            <fileset dir="${application.library}">
+                <include name="**/*.php" />
+            </fileset>
+            <fileset dir="${application.tests}">
+                <include name="**/*.php" />
+            </fileset>
+        </phplint>
+    </target>
+
+    <target name="phploc" description="Mede o tamanho da aplicação">
+        <exec executable="phploc" logOutput="true">
+            <arg value="--log-csv" />
+            <arg value="${application.builddir}/logs/phploc.csv" />
+            <arg path="${application.library}" />
+        </exec>
+    </target>
+
+    <target name="pdepend" description="Calcula métricas de software">
+        <phpdepend>
+            <fileset dir="${application.library}">
+                <include name="**/*.php" />
+            </fileset>
+            <logger type="jdepend-xml" outfile="${application.builddir}/logs/jdepend.xml"/>
+            <logger type="jdepend-chart" outfile="${application.builddir}/pdepend/dependencies.svg"/>
+            <logger type="overview-pyramid" outfile="${application.builddir}/pdepend/overview-pyramid.svg"/>
+            <analyzer type="coderank-mode" value="method"/>
+        </phpdepend>
+    </target>
+
+    <target name="phpmd" unless="phpmd.done" description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
+        <exec executable="phpmd" taskname="phpmd" logOutput="true">
+            <arg path="${application.library}" />
+            <arg value="xml" />
+            <arg value="codesize,unusedcode,naming" />
+            <arg value="--reportfile" />
+            <arg path="${application.builddir}/logs/phpmd.xml" />
+        </exec>
+        <property name="phpmd.done" value="true"/>
+    </target>
+    
+    <target name="phpcpd" description="Testa duplicação de código">
+        <phpcpd>
+            <fileset dir="${application.library}">
+                <include name="**/*.php" />
+            </fileset>
+            <formatter type="pmd" outfile="${application.builddir}/logs/pmd-cpd.xml"/>
+        </phpcpd>
+    </target>
+
+    <target name="phpcs" unless="phpcs.done" description="Testa o padrão de codificação">
+        <exec executable="phpcs" taskname="phpcs" logOutput="true">
+            <arg value="--standard=PSR2" />
+            <arg value="--extensions=php" />
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=${application.builddir}/logs/checkstyle.xml" />
+            <arg value="--ignore=autoload.php" />
+            <arg path="${application.library}" />
+            <arg path="${application.tests}" />
+        </exec>
+        <property name="phpcs.done" value="true"/>
+    </target>
+
+    <target name="phpunit" unless="phpunit.done" description="Testes Unitários">
+        <exec executable="phpunit" taskname="phpunit" logOutput="true">
+            <arg value="--configuration"/>
+            <arg path="./phpunit.xml"/>
+            <arg value="--testdox"/>
+        </exec>
+        <property name="phpunit.done" value="true"/>
+    </target>
+
+    <target name="phpcb" description="Cria a navegação de código">
+        <exec executable="phpcb" logOutput="true">
+            <arg value="--log" />
+            <arg path="${application.builddir}/logs" />
+            <arg value="--source" />
+            <arg path="${application.library}" />
+            <arg value="--output" />
+            <arg path="${application.builddir}/code-browser" />
+        </exec>
+    </target>
+</project>

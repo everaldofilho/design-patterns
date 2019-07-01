@@ -8,7 +8,7 @@ abstract class UserDecorator implements UserI
 
     public function __construct(UserI $user)
     {
-        $this->user = $user;    
+        $this->user = $user;
     }
 
     public function setLogin($login)
@@ -30,5 +30,4 @@ abstract class UserDecorator implements UserI
     {
         return $this->user->getLogin();
     }
-
 }

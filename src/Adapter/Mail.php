@@ -35,7 +35,6 @@ class Mail
 
     public function send()
     {
-        // You code Here
         return true;
     }
 }

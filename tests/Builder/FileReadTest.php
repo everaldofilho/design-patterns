@@ -80,7 +80,5 @@ class FileReadTest extends TestCase
         $this->assertEquals('Claudia Sarah Gabrielly Baptista', $firstLine['nome']);
         $this->assertEquals('claudiasarahgabriellybaptista_@locare-eventos.com.br', $firstLine['email']);
         $this->assertEquals('(83) 2743-3017', $firstLine['telefone']);
-
     }
-
 }

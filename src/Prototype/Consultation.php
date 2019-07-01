@@ -2,7 +2,7 @@
 
 namespace App\Prototype;
 
-class Consultation 
+class Consultation
 {
     protected $nameDoctor;
     protected $nameUser;
