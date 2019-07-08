@@ -10,17 +10,17 @@ class CardTest extends TestCase
     public function testReturnStatus()
     {
         $card = new Card();
-        $card->setStatus("Criado");
-        $this->assertEquals("Criado", $card->getStatus());
-        $card->setStatus("Em Andamento");
-        $this->assertEquals("Em Andamento", $card->getStatus());
-        $card->setStatus("Finalizado");
-        $this->assertEquals("Finalizado", $card->getStatus());
+        $card->setStatus("created");
+        $this->assertEquals("created", $card->getStatus());
+        $card->setStatus("in progress");
+        $this->assertEquals("in progress", $card->getStatus());
+        $card->setStatus("done");
+        $this->assertEquals("done", $card->getStatus());
 
         $card->restore();
-        $this->assertEquals("Em Andamento", $card->getStatus());
+        $this->assertEquals("in progress", $card->getStatus());
         $card->restore();
-        $this->assertEquals("Criado", $card->getStatus());
+        $this->assertEquals("created", $card->getStatus());
         $card->restore();
         $this->assertEquals(null, $card->getStatus());
     }
