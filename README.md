@@ -36,6 +36,9 @@ Gerando relatório de cobertura de código
 - Facade
 - Decorator
 
+### Padrão comportamental
+- Memento
+
 ### Livro
 - Design Patterns com PHP 7
 
