@@ -38,6 +38,7 @@ Gerando relatório de cobertura de código
 
 ### Padrão comportamental
 - Memento
+- Observer
 
 ### Livro
 - Design Patterns com PHP 7
