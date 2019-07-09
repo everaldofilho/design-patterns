@@ -4,6 +4,12 @@ namespace Tests\Observer;
 
 use PHPUnit\Framework\TestCase;
 
+// class Auxilium
+use App\Observer\Card;
+use App\Observer\Product;
+use App\Observer\ObserverCheckInventory;
+use App\Observer\ObserverSendMail;
+
 class CardTest extends TestCase
 {
     private $card;
