@@ -56,4 +56,18 @@ class CardTest extends TestCase
         $this->assertEquals('Estoque Blusa ok', $logs[2]);
         $this->assertEquals('Email enviado', $logs[3]);
     }
+
+    public function testObserverInventory()
+    {
+        $this->card->addProduct(new Product("Calça", 0, 0));
+        $this->card->setStatus(Card::STATUS_IN_PROGRESS);
+        $this->card->save();
+
+        $logs = $this->card->getLog();
+
+        $this->assertEquals('Validando estoque', $logs[0]);
+        $this->assertEquals('Estoque Camisa ok', $logs[1]);
+        $this->assertEquals('Estoque Blusa ok', $logs[2]);
+        $this->assertEquals('Estoque Calça vazio', $logs[3]);
+    }
 }
