@@ -6,6 +6,6 @@ class UserEncriptNormal extends UserDecorator
 {
     public function getPassword()
     {
-        return password_hash($this->user->getPassword(), PASSWORD_DEFAULT);
+        return password_hash(parent::getPassword(), PASSWORD_DEFAULT);
     }
 }

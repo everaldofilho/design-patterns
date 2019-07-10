@@ -6,6 +6,6 @@ class UserEncriptBcript extends UserDecorator
 {
     public function getPassword()
     {
-        return password_hash($this->user->getPassword(), PASSWORD_BCRYPT);
+        return password_hash(parent::getPassword(), PASSWORD_BCRYPT);
     }
 }
