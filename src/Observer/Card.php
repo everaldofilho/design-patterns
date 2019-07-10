@@ -7,14 +7,14 @@ class Card extends CardObserver
     const STATUS_IN_PROGRESS = 1;
     const STATUS_FINISH = 2;
 
-    protected $id;
+    protected $key;
     protected $products = [];
     protected $status;
     protected $logs = [];
 
-    public function __construct($id)
+    public function __construct($key)
     {
-        $this->id = $id;
+        $this->key = $key;
     }
 
     public function addProduct(Product $product)

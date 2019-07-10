@@ -6,9 +6,9 @@ class BookMarkdown extends BookAbstract
 {
     public function buildStruct($title, $category): String
     {
-        $md = sprintf('# %s', $title);
-        $md .= "\n\n";
-        $md .= sprintf('## %s', $category);
-        return $md;
+        $markdown = sprintf('# %s', $title);
+        $markdown .= "\n\n";
+        $markdown .= sprintf('## %s', $category);
+        return $markdown;
     }
 }
