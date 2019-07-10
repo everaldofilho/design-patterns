@@ -4,9 +4,9 @@ namespace App\Adapter;
 
 class Mail
 {
-    protected $message;
-    protected $subject;
     protected $email;
+    protected $subject;
+    protected $message;
 
     public function setSubject($subject)
     {
@@ -35,6 +35,10 @@ class Mail
 
     public function send()
     {
-        return true;
+        $email = sprintf("Email: %s, Message: %s", $this->getEmail(), $this->getMessage());
+        if ($email) {
+            return true;
+        }
+        return false;
     }
 }

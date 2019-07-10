@@ -29,7 +29,10 @@ class Sms
 
     public function send()
     {
-        // You code Here
-        return true;
+        $msg = sprintf("Phone: %s, Message: %s", $this->getPhone(), $this->getMessage());
+        if ($msg) {
+            return true;
+        }
+        return false;
     }
 }

@@ -33,11 +33,12 @@ class UserTest extends TestCase
     public function testCreateUserPasswordBcript()
     {
         $user = new User();
+
+        $user = new UserEncriptBcript($user);
         $user->setLogin("username");
         $user->setPassword("password");
 
-        $user = new UserEncriptBcript($user);
-
         $this->assertTrue(password_verify('password', $user->getPassword()));
+        $this->assertEquals('username', $user->getLogin());
     }
 }
