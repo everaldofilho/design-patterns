@@ -30,9 +30,7 @@ class Sms
     public function send()
     {
         $msg = sprintf("Phone: %s, Message: %s", $this->getPhone(), $this->getMessage());
-        if ($msg) {
-            return true;
-        }
-        return false;
+        
+        return $msg ? true : false;
     }
 }

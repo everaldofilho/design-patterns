@@ -12,7 +12,7 @@ class Mail
     {
         $this->subject = $subject;
     }
-    
+
     public function setMessage($message)
     {
         $this->message = $message;
@@ -36,9 +36,7 @@ class Mail
     public function send()
     {
         $email = sprintf("Email: %s, Message: %s", $this->getEmail(), $this->getMessage());
-        if ($email) {
-            return true;
-        }
-        return false;
+
+        return $email ? true : false;
     }
 }
