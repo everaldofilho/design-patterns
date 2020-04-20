@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/everaldofilho/design-patterns/tree/master.svg?style=svg)](https://circleci.com/gh/everaldofilho/design-patterns/tree/master)
+
 # Design Patterns
 Criado este projeto somente para colocar em pratica.
 
