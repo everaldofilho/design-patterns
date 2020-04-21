@@ -9,4 +9,7 @@ services:
     container_name: design-patterns
     volumes:
       - ./:/var/www/html
-
+networks:
+  default:
+    external:
+      name: Criativoweb
