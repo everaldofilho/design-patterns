@@ -1,0 +1,12 @@
+# v2 syntax
+version: '2.1'
+services:
+  design-patterns:
+    build:
+      context: ./
+      args:
+        - INSTALL_XDEBUG=${INSTALL_XDEBUG}
+    container_name: design-patterns
+    volumes:
+      - ./:/var/www/html
+
